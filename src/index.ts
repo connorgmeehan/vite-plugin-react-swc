@@ -167,6 +167,9 @@ if (import.meta.hot && !inWebWorker) {
   prevRefreshSig = window.$RefreshSig$;
   window.$RefreshReg$ = RefreshRuntime.getRefreshReg("${id}");
   window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+} else if (inWebWorker) {
+  // Provide noop for swc.
+  globalThis.$RefreshReg$ = () => {};
 }
 
 ${result.code}
